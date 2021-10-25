@@ -1,0 +1,36 @@
+version: "3"
+services:
+
+  iwes-postgres:
+    container_name: iwes-postgres
+    image: postgres:13.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=iwes
+      - POSTGRES_DB=iwes_challenge
+      - POSTGRES_USER=iwes
+    restart: always
+
+  #python_app:
+   # container_name: iwes-app
+    #build: ./python-app
+    #depends_on:
+     # - postgres_db
+
+  iwes-udp_server:
+    container_name: iwes-udp_server
+    build: ./udp-server
+    #ports:
+    #  - "20001:20001/udp"
+    depends_on:
+      - postgres_db
+
+
+  iwes-udp_client:
+    container_name: iwes-udp_client
+    build: ./udp-client
+    #ports:
+    #  - "54321:54321/udp"
+    depends_on:
+      - udp_server
