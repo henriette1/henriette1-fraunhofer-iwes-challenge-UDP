@@ -65,7 +65,9 @@ UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.bind((localIP, localPort))
 print('socket bound')
 
-while True:
+timer = 0
+
+while timer < 10:
     print('listening')
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
@@ -84,3 +86,5 @@ while True:
         print('message was written to the db successfully')
     except:
         print('An exception occurred - maybe the sentence was to short. Try again.')
+
+    timer += 1

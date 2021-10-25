@@ -12,11 +12,6 @@ services:
       - POSTGRES_USER=iwes
     restart: always
 
-  #python_app:
-   # container_name: iwes-app
-    #build: ./python-app
-    #depends_on:
-     # - postgres_db
 
   iwes-udp_server:
     container_name: iwes-udp_server
