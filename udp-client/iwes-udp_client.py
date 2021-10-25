@@ -24,5 +24,8 @@ while True:
     print('to be sent:', randomMessage)
     bytesToSend = str.encode(randomMessage)
 
-    UDPClientSocket.sendto(bytesToSend, serverAddressPort)
-
+    try:
+        UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+    except socket.gaierror:
+        print('Hostname could not be resolved. Exiting')
+        break
